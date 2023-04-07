@@ -6,7 +6,7 @@
 /*   By: smallem <smallem@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:21:39 by smallem           #+#    #+#             */
-/*   Updated: 2023/04/06 19:40:52 by smallem          ###   ########.fr       */
+/*   Updated: 2023/04/07 16:16:22 by smallem          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,19 @@ char	*ft_strchr(const char *s, int c)
 	if (s[i] == (char)c)
 		return ((char *)s + i);
 	return (NULL);
+}
+void		ft_putnbr_fd_u(unsigned int d, int fd)
+{
+	char			c;
+
+	if (d >= 10)
+	{
+		ft_putnbr_fd_u(d / 10, fd);
+		ft_putnbr_fd_u(d % 10, fd);
+	}
+	else
+	{
+		c = d + '0';
+		write(fd, &c, 1);
+	}
 }
